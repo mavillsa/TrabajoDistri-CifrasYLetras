@@ -15,16 +15,19 @@ public class Servidor {
 		int puerto = 6666;
 		ExecutorService pool = Executors.newCachedThreadPool();
 		try(ServerSocket ss = new ServerSocket(puerto)){
+			
 			while(true) {
 				List<Socket> lista = new ArrayList<>();
 				for(int i=0; i<N; i++) {
 					lista.add(ss.accept());
-					System.out.println("Jugador conectado");
+					System.out.println("Jugador" + i + " conectado");
 				}
 				pool.execute(new Partida(lista));
 			}
 		}catch(IOException e) {
 			e.printStackTrace();
+		}finally {
+			pool.shutdown();
 		}
 
 	}
