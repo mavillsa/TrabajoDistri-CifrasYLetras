@@ -28,12 +28,7 @@ public class Partida implements Runnable {
 			}
 			for(int k =0; k<lpw.size(); k++) {
 				lpw.get(k).println("EMPIEZA "  + String.join(",", listanombres));
-			}
-			
-			
-			
-			
-			
+			}	
 		}catch(IOException e) {
 			e.printStackTrace();
 		}finally {
