@@ -49,7 +49,7 @@ public class Partida implements Runnable {
 			}
 			String resultado = String.join(" ", listaresultado);
 			for(int k =0; k<lpw.size(); k++) {
-				lpw.get(k).println("RESULTADO  " + resultado);
+				lpw.get(k).println("RESULTADO " + resultado);
 			}
 		}catch(IOException e) {
 			e.printStackTrace();
