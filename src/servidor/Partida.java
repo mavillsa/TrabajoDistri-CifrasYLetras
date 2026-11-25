@@ -39,7 +39,13 @@ public class Partida implements Runnable {
 			}
 			for(int i = 0; i< lbr.size(); i++) {
 				String palabra = lbr.get(i).readLine().substring(8);
-				listapalabras.add(palabra);
+				if(compruebaPalabra(palabra, letras)) {
+					listapalabras.add(palabra);
+				}else {
+					listapalabras.add("");
+					lpw.get(i).println("Palabra erronea");
+				}
+				
 			}
 			for(int i = 0; i< lbr.size(); i++) {
 				listapuntos.add(listapalabras.get(i).length());
@@ -51,6 +57,7 @@ public class Partida implements Runnable {
 			for(int k =0; k<lpw.size(); k++) {
 				lpw.get(k).println("RESULTADO " + resultado);
 			}
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}finally {
@@ -84,5 +91,24 @@ public class Partida implements Runnable {
 			letras = letras + ", " + lista.get(i);
 		}
 		return letras;
+	}
+	public Boolean compruebaPalabra(String palabra, String letras) {
+		String[] listaletras;
+		listaletras = letras.split(",");
+		List<String> lista = new ArrayList<>();
+		for(int i = 0; i<listaletras.length; i++) {
+			lista.add(listaletras[i].trim());
+		}
+		String palabraMayus = palabra.toUpperCase();
+		for(int k=0; k<palabraMayus.length(); k++) {
+			String letra = String.valueOf(palabraMayus.charAt(k));
+			if(lista.contains(letra)) {
+					lista.remove(letra);
+			}
+			else {
+				return false;
+			}		
+		}
+		return true;
 	}
 }
